@@ -65,13 +65,6 @@ namespace INSOL.ways
             return triangles.ToArray();
         }
 
-        /// <summary>
-        /// Оптимизированный метод определения пересечения луча с мешкой.
-        /// Использует параллельные вычисления.
-        /// </summary>
-        /// <param name="mesh">Меш.</param>
-        /// <param name="ray">Луч.</param>
-        /// <returns>True если есть пересечение.</returns>
         public static bool IsHit(Mesh mesh, Ray3d ray)
         {
             bool isHit = false;
@@ -106,22 +99,10 @@ namespace INSOL.ways
             return isHit;
         }
 
-        /// <summary>
-        /// Ray-versus-triangle intersection test suitable for ray-tracing etc.
-        /// Port of Möller–Trumbore algorithm c++ version from:
-        /// https://en.wikipedia.org/wiki/Möller–Trumbore_intersection_algorithm
-        /// https://answers.unity.com/questions/861719/a-fast-triangle-triangle-intersection-algorithm-fo.html
-        /// </summary>
-        /// <returns><c>The distance along the ray to the intersection</c> if one exists, <c>NaN</c> if one does not.</returns>
-        /// <param name="ray">Le ray.</param>
-        /// <param name="v0">A vertex of the triangle.</param>
-        /// <param name="v1">A vertex of the triangle.</param>
-        /// <param name="v2">A vertex of the triangle.</param>
         public static float IntersectRayTriangle(Ray3d ray, Point3f v0, Point3f v1, Point3f v2)
         {
             const float kEpsilon = 0.000001f;
 
-            // edges from v1 & v2 to v0.     
             Vector3d e1 = v1 - v0;
             Vector3d e2 = v2 - v0;
 
